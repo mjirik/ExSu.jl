@@ -12,5 +12,10 @@ matrix:
   fast_finish: true
 notifications:
   email: false
+
+install:
+  - wget http://home.zcu.cz/~mjirik/lisa/install/install_conda.sh && source install_conda.sh
+  - conda list
+
 after_success:
   - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(process_folder())'
