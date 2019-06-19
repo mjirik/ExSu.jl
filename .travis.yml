@@ -17,5 +17,9 @@ install:
   - wget http://home.zcu.cz/~mjirik/lisa/install/install_conda.sh && source install_conda.sh
   - conda list
 
+  - conda create --yes -n travis -c mjirik -c conda-forge python=3 pandas
+  - source activate travis
+  - julia -e 'using Pkg; Pkg.add("PyCall"); ENV["PYTHON"] = read(`which python`, String)[1:end-1]; Pkg.build("PyCall")'
+
 after_success:
   - julia -e 'using Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(process_folder())'
