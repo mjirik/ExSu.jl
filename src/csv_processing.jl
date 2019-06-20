@@ -73,14 +73,14 @@ function dict_string_keys_to_symbols(to_add)
 end
 
 
-function add_to_csv(filename)
+function add_row_to_csv(row::Dict, filename)
     tbl = CSV.read(filename)
     tbl = DataFrame(tbl)
+    to_add = row
     add_missing_cols!(tbl, to_add)
     new_row = prepare_empty_row(tbl)
     new_to_add = dict_string_keys_to_symbols(to_add)
     merge!(new_row, new_to_add)
     push!(tbl, new_row)
-    display(tbl)
     CSV.write(filename, tbl)
 end

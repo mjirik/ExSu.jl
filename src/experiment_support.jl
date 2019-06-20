@@ -1,5 +1,5 @@
-using Pandas
-using Dates
+# using Pandas
+# using Dates
 
 """
 Append table or row to CSV file.
@@ -14,37 +14,62 @@ end
 
 function add_to_csv(df::Dict, data_file::AbstractString)
     # wrap values into array
-    wrap_with_array = false
+    one_row = false
     for (key, val) in df
         if !isa(val, Array)
-            wrap_with_array = true
+            one_row = true
             break
         end
     end
+    if one_row
+        add_row_to_csv(df, data_file)
+    else
+        for i=1:length(df[collect(keys(df))[1]])
+            new_row_dict = Dict()
+            for (key, val) in df
+                new_row_dict[key] = val[i]
+            end
+            add_row_to_csv(new_row_dict, data_file)
 
-    new_dict = Dict()
-    for (key, val) in df
-        if wrap_with_array
-            new_dict[key] = [val]
-        else
-            new_dict[key] = val
+
         end
     end
-
-
-    dfo = Pandas.DataFrame(new_dict)
-    add_to_csv(dfo, data_file)
-
 end
 
-function add_to_csv(df::Pandas.DataFrame, data_file::AbstractString)
 
-    if isfile(data_file)
-        df0 = read_csv(data_file)
-        df = concat((df0, df); ignore_index=true, sort=false)
-    end
-    to_csv(df, data_file; index=false) #, sep=";")
-end
+# function add_to_csv(df::Dict, data_file::AbstractString)
+#     # wrap values into array
+#     wrap_with_array = false
+#     for (key, val) in df
+#         if !isa(val, Array)
+#             wrap_with_array = true
+#             break
+#         end
+#     end
+#
+#     new_dict = Dict()
+#     for (key, val) in df
+#         if wrap_with_array
+#             new_dict[key] = [val]
+#         else
+#             new_dict[key] = val
+#         end
+#     end
+#
+#
+#     dfo = Pandas.DataFrame(new_dict)
+#     add_to_csv(dfo, data_file)
+#
+# end
+
+# function add_to_csv(df::Pandas.DataFrame, data_file::AbstractString)
+#
+#     if isfile(data_file)
+#         df0 = read_csv(data_file)
+#         df = concat((df0, df); ignore_index=true, sort=false)
+#     end
+#     to_csv(df, data_file; index=false) #, sep=";")
+# end
 
 
 """
