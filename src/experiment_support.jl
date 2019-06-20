@@ -65,7 +65,7 @@ end
 """
 experiment is string used to tag experiment
 """
-function timed_to_dict!(dct, timed; experiment=nothing, datetime=true)
+function timed_and_more_to_dict!(dct, timed; experiment=nothing, datetime=true)
     dct["elapsed"] = timed[2]
     dct["alocated"] = timed[3]
     if experiment != nothing
