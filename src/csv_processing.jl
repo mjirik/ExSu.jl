@@ -10,9 +10,9 @@ function prepare_empty_col(sz, tp=Any)
     return arr
 end
 
-function add_empty_col!(tbl, col_name)
+function add_empty_col!(dataframe::DataFrame, col_name)
 #     col = prepare_empty_col(size(tbl, 1), String)
-    col = prepare_empty_col(size(tbl, 1))
+    col = prepare_empty_col(size(dataframe, 1))
 #     println(col)
     if typeof(col_name) == Symbol
         column_name = col_name
@@ -21,27 +21,31 @@ function add_empty_col!(tbl, col_name)
     end
 #     print(column_name)
 #     tbl[column_name] = 1:size(tbl,1)
-    tbl[column_name] = col
+    dataframe[column_name] = col
 #     display(tbl)
-    return tbl
+    return dataframe
 
 end
 
-function add_missing_cols!(tbl, to_add)
+function add_missing_cols!(dataframe::DataFrame, to_add::Dict)
 
-    nms = [String(name) for name in names(tbl)]
+    nms = [String(name) for name in names(dataframe)]
+    # @info "names as string" nms #, nms
+    ks = [String(name) for name in keys(to_add)]
 
 
-    for key in keys(to_add)
-
+    allkeys = collect(Set(vcat(nms, ks)))
+    # @info "names as string" allkeys
+    for key in allkeys
         if key in nms
-#             println("key '$key' exists")
+            # println("key '$key' exists")
         else
-            add_empty_col!(tbl, key)
+            add_empty_col!(dataframe, key)
+            # println("adding empty col for key '$key'")
         end
 
     end
-    return tbl
+    return dataframe
 end
 
 
@@ -72,15 +76,24 @@ function dict_string_keys_to_symbols(to_add)
     return new_to_add
 end
 
+function add_row_to_csv(row::Tuple, filename)
+    return add_row_to_csv(Dict(row), filename)
+end
 
 function add_row_to_csv(row::Dict, filename)
-    tbl = CSV.read(filename)
-    tbl = DataFrame(tbl)
-    to_add = row
-    add_missing_cols!(tbl, to_add)
-    new_row = prepare_empty_row(tbl)
-    new_to_add = dict_string_keys_to_symbols(to_add)
-    merge!(new_row, new_to_add)
-    push!(tbl, new_row)
+    if isfile(filename)
+        tbl = CSV.read(filename)
+        tbl = DataFrame(tbl)
+        @debug "display tbl" tbl
+        to_add = row
+        add_missing_cols!(tbl, to_add)
+        @debug "missing cols" tbl
+        new_row = prepare_empty_row(tbl)
+        new_to_add = dict_string_keys_to_symbols(to_add)
+        merge!(new_row, new_to_add)
+        push!(tbl, new_row)
+    else
+        tbl = DataFrame(row)
+    end
     CSV.write(filename, tbl)
 end
