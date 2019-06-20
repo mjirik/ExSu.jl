@@ -72,8 +72,17 @@ function timed_to_dict!(dct, timed; experiment=nothing, datetime=true)
         dct["experiment"] = experiment
     end
     if datetime
-        dct["datetime"] = Dates.format(Dates.now(), "yyyy-mm-dd HH:MM:SS")
+        dct[prefix * "datetime"] = Dates.format(Dates.now(), "yyyy-mm-dd HH:MM:SS")
     end
+    return dct
+end
+
+"""
+experiment is string used to tag experiment
+"""
+function timed_to_dict!(dct, timed, prefix="")
+    dct[prefix * "elapsed"] = timed[2]
+    dct[prefix * "alocated"] = timed[3]
     return dct
 end
 
