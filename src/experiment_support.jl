@@ -77,6 +77,11 @@ function timed_to_dict!(dct, timed; experiment=nothing, datetime=true)
     return dct
 end
 
+function datetime_to_dict!(dct, key="datetime")
+    dct["datetime"] = Dates.format(Dates.now(), "yyyy-mm-dd HH:MM:SS")
+    return dct
+end
+
 function size_to_dict!(dct, data_size, data_name="")
     dct[data_name * "size_1"] = data_size[1]
     dct[data_name * "size_2"] = data_size[2]
