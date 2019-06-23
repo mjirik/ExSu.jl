@@ -1,5 +1,5 @@
 # using Pandas
-# using Dates
+using Dates
 
 """
 Append table or row to CSV file.
