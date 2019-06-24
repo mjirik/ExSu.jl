@@ -1,13 +1,14 @@
 name = "ExSu"
 uuid = "7b39b095-d77a-58fa-8447-59aa0294474b"
 authors = ["Miroslav Jirik <miroslav.jirik@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 # Pandas = "eadc2687-ae89-51f9-a5d9-86b5a6373a9c"
 # PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
