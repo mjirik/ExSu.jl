@@ -1,4 +1,4 @@
-using ExSu
+using ExSup
 using Test
 
 # @testset "ExSu.jl" begin
