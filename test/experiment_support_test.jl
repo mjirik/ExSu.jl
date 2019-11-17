@@ -54,3 +54,19 @@ end
     @test size(df) == (1,3)
     # display(df)
 end
+
+@testset "write, datetime" begin
+    fn4 = "test4.csv"
+    if isfile(fn4) rm(fn4) end
+
+    segmentation = zeros(Int, 3,3)
+    segmentation[1,2:3] .= 1
+
+    data = Dict()
+    data["measurement 1 "] = 1.2
+    ExSup.datetime_to_dict!(data)
+    ExSup.segmentation_description_to_dict!(data, segmentation)
+    @test length(data) > 1
+    ExSup.add_to_csv(data, fn4)
+    ExSup.add_to_csv((:one=>1, :three=>3), fn4)
+end
