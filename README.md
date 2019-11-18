@@ -21,6 +21,19 @@ stored as row in CSV table. The cols may be different in every experiment.
     ExSup.add_to_csv(data, fn4)
 ```
 
+In experiment `data` is stored date and time and  `segmentation` description.
+
+```julia
+Dict{Any,Any} with 7 entries:
+  "length"                => 1.2
+  "datetime"              => "2019-11-17 21:49:28"
+  "data_voxel_number"     => 9
+  "data_non_zeros_number" => 2
+  "data_size_1"           => 3
+  "data_size_2"           => 3
+  "data_zeros_number"     => 7
+```
+
 
 ## Save experiments with different rows
 
