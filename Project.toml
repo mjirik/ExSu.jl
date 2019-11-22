@@ -1,7 +1,7 @@
 name = "ExSup"
 uuid = "7b39b095-d77a-58fa-8447-59aa0294474b"
 authors = ["Miroslav Jirik <miroslav.jirik@gmail.com>"]
-version = "0.0.1"
+version = "0.0.2"
 
 [deps]
 # Pandas = "eadc2687-ae89-51f9-a5d9-86b5a6373a9c"
