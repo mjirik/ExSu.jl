@@ -19,7 +19,7 @@ stored as row in CSV table. The cols may be different in every experiment.
     data["length"] = 1.2
     ExSup.datetime_to_dict!(data)
     ExSup.segmentation_description_to_dict!(data, segmentation)
-    ExSup.add_to_csv(data, fn4)
+    ExSup.add_to_csv(data, "output.csv")
 ```
 
 In experiment `data` is stored date and time and  `segmentation` description.
