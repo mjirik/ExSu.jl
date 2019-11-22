@@ -11,15 +11,15 @@ stored as row in CSV table. The cols may be different in every experiment.
 
 ## Save image segmentation experiment outputs
 ```julia
-    using ExSup
-    segmentation = zeros(Int, 3,3)
-    segmentation[1,2:3] .= 1
+using ExSup
+segmentation = zeros(Int, 3,3)
+segmentation[1,2:3] .= 1
 
-    data = Dict()
-    data["length"] = 1.2
-    ExSup.datetime_to_dict!(data)
-    ExSup.segmentation_description_to_dict!(data, segmentation)
-    ExSup.add_to_csv(data, "output.csv")
+data = Dict()
+data["length"] = 1.2
+ExSup.datetime_to_dict!(data)
+ExSup.segmentation_description_to_dict!(data, segmentation)
+ExSup.add_to_csv(data, "output.csv")
 ```
 
 In experiment `data` is stored date and time and  `segmentation` description.
