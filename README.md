@@ -1,10 +1,13 @@
-# ExSup
+# Exhttps://github.com/mjirik/exsuup
 
 [![Build Status](https://travis-ci.org/mjirik/ExSup.jl.svg?branch=master)](https://travis-ci.org/mjirik/ExSup.jl)
 [![Coveralls](https://coveralls.io/repos/github/mjirik/ExSup.jl/badge.svg?branch=master)](https://coveralls.io/github/mjirik/ExSup.jl?branch=master)
 
-Package make support for experiments outputs. The experiment result is
+Package make support for general experiment outputs. The experiment result is
 stored as row in CSV table. The cols may be different in every experiment.
+There are functions prepared for 3D computer vision experiment support.
+
+The package is inspired by python [`exsu`](https://github.com/mjirik/exsu).
 
 
 # Examples
