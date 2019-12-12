@@ -22,7 +22,7 @@ using DataFrames
     if isfile(fn2) rm(fn2) end
     ExSup.add_to_csv((:one=>1, :two=>2), fn2)
     df = CSV.read(fn2)
-    display(df)
+    # display(df)
     @test isfile(fn2)
 end
 
@@ -85,7 +85,7 @@ end
 
 @testset "check type unions" begin
     fn = "test4.csv"
-    if isfile(fn3) rm(fn)
+    if isfile(fn) rm(fn) end
     ExSup.add_to_csv((:one=>1, :two=>2), fn)
     ExSup.add_to_csv((:three=>2, :two=>2), fn)
     @test isfile(fn)
