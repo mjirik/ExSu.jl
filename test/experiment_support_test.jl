@@ -70,3 +70,29 @@ end
     ExSup.add_to_csv(data, fn4)
     ExSup.add_to_csv((:one=>1, :three=>3), fn4)
 end
+
+
+@testset "extend row type" begin
+    tbl1 = DataFrame((:one=>[1], :two=>[2]))
+    tbl2 = DataFrame((:one=>[1.1], :two=>[2]))
+    row = Dict((:one=>1.2, :two=>2))
+
+    still_tbl1 = ExSup.extend_row_type!(tbl1, row)
+    @test typeof(still_tbl1) <: DataFrame
+    @test typeof(ExSup.extend_row_type!(tbl1, tbl2)) <: DataFrame
+end
+
+
+@testset "check type unions" begin
+    fn = "test4.csv"
+    if isfile(fn3) rm(fn)
+    ExSup.add_to_csv((:one=>1, :two=>2), fn)
+    ExSup.add_to_csv((:three=>2, :two=>2), fn)
+    @test isfile(fn)
+    ExSup.add_to_csv((:one=>1.3, :two=>2), fn)
+    @test isfile(fn)
+    ExSup.add_to_csv((:one=>missing, :two=>2), fn)
+    @test isfile(fn)
+
+
+end
