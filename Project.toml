@@ -4,21 +4,19 @@ authors = ["Miroslav Jirik <miroslav.jirik@gmail.com>"]
 version = "0.0.3"
 
 [deps]
-# Pandas = "eadc2687-ae89-51f9-a5d9-86b5a6373a9c"
-# PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
-DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+Io3d = "276a7f50-ef14-5ff6-a3e3-20ef51d5e3d7"
 Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
 [compat]
-julia = "1.1"
-DataFrames = "0.18"
 CSV = "0.5"
+DataFrames = "0.18"
+julia = "1.1"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-# Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [targets]
 test = ["Test"]
